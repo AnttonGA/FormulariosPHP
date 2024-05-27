@@ -65,9 +65,32 @@ $ip_remota = $_SERVER['REMOTE_ADDR'];
 echo "IP Remota : $ip_remota" . '<br>';
 foreach($alumnos as $key => $valor){
         if ($valor == $ip_remota) { 
-                echo "Kaixo " . $key; 
+                echo "Kaixo " . $key .'<br>'; 
                 break;
         }
 }
+if (in_array($ip_remota, $alumnos)){
+        echo "estas en alumnos";
+}
+
+$redlocal = '172.17.';
+
+if (substr($ip_remota,0,7)==$redlocal) {
+        echo '<br>Estas en la red local';
+}
+if (substr($ip_remota,0,9)=='172.17.15') {
+        echo '<br>Estas en la red profesores';
+}
+echo '<hr>';
+if (substr($ip_remota,0,9)=='172.17.15') {
+        echo '<br>Estas en la red profesores';
+} elseif (substr($ip_remota,0,7)==$redlocal) {
+        echo '<br>Estas en la red local';
+} else {
+        echo '<br>Hola Internauta';
+}
+
+
+
 
 ?>
