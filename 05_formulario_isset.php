@@ -67,10 +67,14 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){
     echo '<p>Conocimientos</p>'; */
     /* recoger */
     // RECOGIDA VALORES CHECKBOX NAME=”conocimientos[]”
-            if (is_array($_POST['conocimientos'])&& isset($_POST['conocimientos'])){
+        if (isset($_POST['conocimientos'])){
+            if (is_array($_POST['conocimientos'])){
                 $conocimientos = $_POST['conocimientos'];
             } else {
-            $conocimientos = [];
+                $conocimientos = [];
+            } 
+            }else {
+                $conocimientos = [];
             }
             print_r ($conocimientos);
 
@@ -146,7 +150,8 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){
     }
 
     // Conocimientos
-    if (empty($_POST["conocimientos"])) {
+
+    if (empty($_POST["conocimientos"]) || !isset($_POST["conocimientos"])) {
         $conoError = "Los conocimientos són obligatorios.";
         $verformulario='SI';
     } else {
@@ -178,7 +183,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){
 if ($verformulario=='SI'){
 ?>
 <form method="post" action="" >  
-        <fieldset style="background-color:gold;">
+        <fieldset style="background-color:aquamarine;">
             <legend><h2 style="background-color:grey;color:black;border:1px solid black;margin:5px;padding:5px">Contacto</h2></legend>            
             <p><span class="error">* Campo requerido</span></p>
             Nombre: <input type="text" name="nombre" value="<?php echo $nombre;?>"><span class="error">*<?php echo $nombreError; ?></span>

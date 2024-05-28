@@ -23,28 +23,38 @@
             return $data;
         }
     
+    if ($_POST){
+        $mostrarFormulario=false;
         $nombre = recogerVar($_REQUEST['nombre']);
         $anyo = $_REQUEST['anyo'];   
-        $formularioCorrecto=true;
+        $mostrarFormulario =false;
         $errorNombre = '';
         $textoError = '';
         if (empty($nombre) ||  strlen($nombre)<4){
             $formularioCorrecto=false;
+            $mostrarFormulario=true;
             $textoError .= 'Nombre vacio';
             $errorNombre= 'error';
         }
 
 
-        
+    } else {
+       $nombre = $anyo = $errorNombre = $textoError = '';
+       $formularioCorrecto=true;
+       $mostrarFormulario = true;
+
+    }
         
         
         // resultado
-        if ($formularioCorrecto){
+        if ($mostrarFormulario == false){
             echo '<p>Ok</p>';
         } else {
+            if (!$formularioCorrecto){
             echo "<p class='error'>$textoError</p>";
+            }
             ?>
-                <form name="form1" action="01-formulario-alberto_env.php" method="POST">
+                <form name="form1" action="" method="POST">
          Nombre <input type="text" class="<?php echo $errorNombre;?>" name="nombre" id="nombre" value="<?php echo $nombre;?>"/><br>
             Año Nacimiento <input type="text" name="anyo" id="anyo" /><br>
         <input type="submit" name="submit" value="enviar">

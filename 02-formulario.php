@@ -1,8 +1,10 @@
 <?php
+// funcion para sanitizar los datos
+// podria incluirse en el include funciones.php o config.php
 function recogerVar($data) {
-    $data = trim($data);
-    $data = addslashes($data);
-    $data = htmlspecialchars($data);
+    $data = trim($data); // elimina espacios al principio y al final del dato
+    $data = addslashes($data); // añade contrabarra \ a las comillas (evitar inyeccion)
+    $data = htmlspecialchars($data); // transforma a entidades HTML los valores queinterpreta html ( < -> &lt;)
     return $data;
   }
 ?>
@@ -22,7 +24,7 @@ $mailError = $telefonoError= '';
 if ($_SERVER['REQUEST_METHOD']=='POST'){
 	/* recoger variables del formulario */
 	$verformulario = 'NO';
-	$nombre = recogerVar($_POST['nombre']);
+	$nombre = recogerVar($_POST['nombre']); 
 	$mail = recogerVar($_POST['mail']);
     $telefono  = recogerVar($_POST['telefono']);
 	$ano = recogerVar($_POST['ano']);
@@ -45,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){
 
 if ($verformulario=='SI'){
 ?>
-    <form name="formcontacto" action="02-formulario.php" method="POST">
+    <form name="formcontacto" action="" method="POST">
 		<p>
 		<input name="nombre" id="nombre" type="text" value="<?php echo $nombre;?>" />
 		<?php echo $nombreError; ?>
