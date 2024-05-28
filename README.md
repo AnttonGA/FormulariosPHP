@@ -11,11 +11,13 @@ Ejemplo de formularo en un único fichero ```$_SERVER['REQUEST_METHOD']```
 
 ## 03-FORMULARIO
 
-Ejemplos varios
+Ejemplos varios.
+
 
 
 ## 23-SUBIR ARCHIVOS
 
-Ejemplos de subida de archivos al servidor
+Ejemplos de subida de archivos al servidor.
+
 
 
